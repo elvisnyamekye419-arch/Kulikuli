@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sales · KuliKuli Ghana</title><link rel="stylesheet" href="style.css"><script src="auth.js"></script></head>
+<body data-page="sales"><header id="nav"></header><main>
+<h1>Sales</h1>
+<form id="f" class="card grid">
+<label>Date<input type="date" name="date" required></label>
+<label>Customer<input name="customer" required placeholder="Shop name, person or Walk-in"></label>
+<label>Channel<select name="channel"><option>Market<option>Online<option>Bulk<option>School<option>Office<option>Other</select></label>
+<label>Product<input name="product" value="Kulikuli" list="prods"></label>
+<datalist id="prods"><option>Small Pack<option>Medium Pack<option>Large Pack<option>Bulk Loose<option>Kulikuli</datalist>
+<label>Qty sold<input type="number" name="qty" min="0" step="any" required></label>
+<label>Unit price (GHS)<input type="number" name="price" min="0" step="0.01" required></label>
+<label>Total<output id="tot">GHS 0.00</output></label>
+<label>Payment method<select name="pay"><option>Cash<option>MoMo<option>Bank Transfer<option>Credit</select></label>
+<label>Payment status<select name="status"><option>Paid<option>Unpaid</select></label>
+<label class="wide">Notes<input name="notes" placeholder="Delivery, outstanding balance, etc."></label>
+<div class="actions"><button class="save">Save</button><button type="button" id="more" class="ghost">Save and add another item</button><button type="button" id="cancel" class="ghost" hidden>Cancel edit</button></div>
+</form>
+<div class="bar"><label>Month<input type="month" id="m"></label><input type="search" id="q" placeholder="Search customer or product"><span id="sum"></span></div>
+<div class="scroll"><table><thead><tr><th>Date<th>Customer<th>Channel<th>Product<th class="n">Qty<th class="n">Price<th class="n">Total<th>Method<th>Status<th></tr></thead><tbody id="body"></tbody></table></div>
+</main><footer id="foot"></footer>
+<script src="app.js"></script></body></html>

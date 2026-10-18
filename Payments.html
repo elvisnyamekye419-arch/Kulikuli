@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Payment status · KuliKuli Ghana</title><link rel="stylesheet" href="style.css"><script src="auth.js"></script></head>
+<body data-page="pay"><header id="nav"></header><main>
+<h1>Payment status</h1>
+<div id="cards" class="stats"></div>
+<div class="bar"><label>Show<select id="s"><option>Unpaid<option>Paid<option>All</select></label><label>Payment date<input type="date" id="pd"></label><input type="search" id="q" placeholder="Search customer"><button id="all" class="go" hidden></button></div>
+<div class="scroll"><table><thead><tr><th>Sale date<th>Customer<th>Method<th class="n">Amount<th>Status<th>Detail<th></tr></thead><tbody id="body"></tbody></table></div>
+</main><footer id="foot"></footer>
+<script src="app.js"></script></body></html>

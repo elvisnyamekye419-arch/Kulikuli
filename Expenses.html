@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Expenses · KuliKuli Ghana</title><link rel="stylesheet" href="style.css"><script src="auth.js"></script></head>
+<body data-page="exp"><header id="nav"></header><main>
+<h1>Expenses</h1>
+<form id="f" class="card grid">
+<label>Date<input type="date" name="date" required></label>
+<label>Description<input name="item" required placeholder="e.g. Raw materials (groundnuts)"></label>
+<label>Amount (GHS)<input type="number" name="amount" min="0" step="0.01" required></label>
+<label>Category<select name="cat"><option>Raw Materials<option>Packaging<option>Labour<option>Transport<option>Marketing<option>Utilities<option>Equipment<option>Investor<option>Other</select></label>
+<label class="wide">Notes<input name="notes"></label>
+<div class="actions"><button class="save">Save</button><button type="button" id="cancel" class="ghost" hidden>Cancel edit</button></div>
+</form>
+<div class="bar"><label>Month<input type="month" id="m"></label><input type="search" id="q" placeholder="Search description or category"><span id="sum"></span></div>
+<div class="scroll"><table><thead><tr><th>Date<th>Description<th>Category<th class="n">Amount<th>Notes<th></tr></thead><tbody id="body"></tbody></table></div>
+</main><footer id="foot"></footer>
+<script src="app.js"></script></body></html>

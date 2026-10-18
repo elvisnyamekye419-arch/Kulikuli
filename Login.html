@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sign in · KuliKuli Ghana</title><link rel="stylesheet" href="style.css"><script src="auth.js"></script></head>
+<body class="login"><main class="card lcard">
+<div class="lbrand">KuliKuli Ghana<small>MF Empowerment &amp; Trading Center</small></div>
+<h1 id="t"></h1><p id="msg" class="note"></p>
+<form id="f">
+<label id="l0" hidden>Current password<input type="password" id="p0" autocomplete="current-password"></label>
+<label id="l1"><span id="l1t">Password</span><input type="password" id="p1" required autofocus></label>
+<label id="l2" hidden>Confirm new password<input type="password" id="p2" autocomplete="new-password"></label>
+<p id="err" class="bad" role="alert"></p>
+<button id="go">Sign in</button>
+</form>
+<p class="note" id="fw" hidden><a href="#" id="forgot">Forgot password?</a></p>
+</main>
+<script>
+const $=s=>document.querySelector(s), show=(id,v)=>$(id).hidden=!v;
+const change=Auth.ok()&&location.search.includes('change'), setup=!Auth.has(), home='index.html';
+if(Auth.ok()&&!change)location.replace(home);
+if(setup){$('#t').textContent='Create your password';$('#msg').textContent='Choose a password of at least 6 characters. You will need it each time you open the books.';$('#l1t').textContent='New password';show('#l2',1);$('#go').textContent='Create password and enter';$('#p1').autocomplete='new-password';}
+else if(change){$('#t').textContent='Change password';show('#l0',1);show('#l2',1);$('#l1t').textContent='New password';$('#go').textContent='Save new password';$('#p0').autofocus=true;}
+else{$('#t').textContent='Sign in';show('#fw',1);$('#p1').autocomplete='current-password';}
+$('#f').onsubmit=async e=>{
+  e.preventDefault();const err=m=>$('#err').textContent=m,p1=$('#p1').value;err('');
+  if(setup||change){
+    if(change&&!await Auth.check($('#p0').value))return err('Current password is wrong.');
+    if(p1.length<6)return err('Use at least 6 characters.');
+    if(p1!==$('#p2').value)return err('The two new passwords do not match.');
+    await Auth.set(p1);
+  }else if(!await Auth.check(p1))return err('Wrong password. Try again.');
+  Auth.start();location.replace(home);
+};
+$('#forgot').onclick=e=>{e.preventDefault();
+  if(prompt('Resetting removes the password AND deletes all sales and expense records on this device. You can restore them afterwards from a backup file.\n\nType RESET to continue.')==='RESET'){Auth.reset();location.reload();}
+};
+</script></body></html>
